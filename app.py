@@ -652,8 +652,8 @@ Patient Profile: {json.dumps(st.session_state.profile_data)}
 elif st.session_state.current_section == "reports":
     st.markdown('<div class="card">', unsafe_allow_html=True)
     st.markdown('<h2>📈 Health Analytics Dashboard</h2>', unsafe_allow_html=True)
-
-    # Initialize session state analytics data if not exists
+    
+    # Ensure analytics data exists
     if 'analytics_data' not in st.session_state:
         st.session_state.analytics_data = {
             "dates": [],
@@ -667,6 +667,7 @@ elif st.session_state.current_section == "reports":
     st.markdown("### 📝 Log Multiple Metrics at Once")
     range_type = st.selectbox("Select Range Type", ["By Day", "By Week", "By Month"])
     dates_to_add = []
+
     if range_type == "By Day":
         date_range = st.date_input("Select Date Range", value=(datetime.today(), datetime.today()))
         if len(date_range) == 2:
@@ -741,7 +742,7 @@ elif st.session_state.current_section == "reports":
         except Exception as e:
             st.error(f"🚨 An unexpected error occurred: {str(e)}")
 
-    # Ensure all lists are the same length before creating DataFrame
+    # Ensure all lists are same length
     dates = st.session_state.analytics_data.get("dates", [])
     heart_rates = st.session_state.analytics_data.get("heart_rates", [])
     glucose_levels = st.session_state.analytics_data.get("glucose_levels", [])

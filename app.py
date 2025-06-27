@@ -1102,3 +1102,4 @@ st.markdown(f'<p style="text-align:center; font-size:14px;">{LANGUAGES[lang]["fo
 with st.expander("🔧 Debug Mode"):
     st.write("Session State:", st.session_state)
 
+
